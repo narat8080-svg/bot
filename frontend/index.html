@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Digital Tools Shop - Telegram Mini App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="app-header">
+        <h1>Digital Tools Shop</h1>
+        <div class="user-info">
+          <span id="username-display"></span>
+          <span id="balance-display"></span>
+        </div>
+      </header>
+
+      <nav class="app-nav">
+        <button class="nav-btn" data-view="products-view">Products</button>
+        <button class="nav-btn" data-view="cart-view">Cart</button>
+        <button class="nav-btn" data-view="balance-view">Add Balance</button>
+        <button class="nav-btn" data-view="dashboard-view">Dashboard</button>
+        <a class="nav-btn nav-btn-secondary" href="/pages/admin.html" target="_blank">Admin</a>
+      </nav>
+
+      <main class="app-main">
+        <section id="products-view" class="view active-view">
+          <h2>Products</h2>
+          <div id="products-list" class="cards-grid"></div>
+        </section>
+
+        <section id="cart-view" class="view">
+          <h2>Your Cart</h2>
+          <div id="cart-items"></div>
+          <div class="cart-summary">
+            <span>Total: <strong id="cart-total">0</strong> KHR</span>
+            <button id="checkout-btn" class="primary-btn">Checkout</button>
+          </div>
+        </section>
+
+        <section id="balance-view" class="view">
+          <h2>Add Balance (KHQR)</h2>
+          <form id="add-balance-form" class="form-card">
+            <label>
+              Amount (KHR)
+              <input type="number" min="1" step="1" id="topup-amount" required />
+            </label>
+            <button type="submit" class="primary-btn">Generate KHQR</button>
+          </form>
+          <div id="khqr-result" class="khqr-result hidden">
+            <h3>Scan this KHQR</h3>
+            <textarea id="khqr-data" readonly></textarea>
+            <p>Use your Bakong wallet to scan the QR data above.</p>
+            <p class="small-text">
+              After confirming the payment in your system, an admin should confirm it in the admin
+              panel.
+            </p>
+          </div>
+        </section>
+
+        <section id="dashboard-view" class="view">
+          <h2>Dashboard</h2>
+          <div id="dashboard-content">
+            <p>Loading...</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="product-modal" class="modal hidden">
+      <div class="modal-content">
+        <button id="modal-close-btn" class="modal-close">&times;</button>
+        <h3 id="modal-product-name"></h3>
+        <p id="modal-product-description"></p>
+        <p><strong id="modal-product-price"></strong> KHR</p>
+        <button id="modal-add-to-cart-btn" class="primary-btn">Add to Cart</button>
+      </div>
+    </div>
+
+    <script src="./js/api.js"></script>
+    <script src="./js/telegram.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
+

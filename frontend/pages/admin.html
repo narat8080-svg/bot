@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Panel - Digital Tools Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="app-header">
+        <h1>Admin Panel</h1>
+      </header>
+
+      <main class="app-main admin-main">
+        <section id="admin-login-section" class="view active-view">
+          <h2>Admin Login</h2>
+          <form id="admin-login-form" class="form-card">
+            <label>
+              Username
+              <input type="text" id="admin-username" required />
+            </label>
+            <label>
+              Password
+              <input type="password" id="admin-password" required />
+            </label>
+            <button type="submit" class="primary-btn">Login</button>
+          </form>
+          <p id="admin-login-error" class="error-text"></p>
+        </section>
+
+        <section id="admin-panel-section" class="view hidden">
+          <nav class="app-nav">
+            <button class="nav-btn" data-admin-view="products-admin-view">Products</button>
+            <button class="nav-btn" data-admin-view="users-admin-view">Users</button>
+            <button class="nav-btn" data-admin-view="transactions-admin-view">Transactions</button>
+          </nav>
+
+          <section id="products-admin-view" class="admin-view active-view">
+            <h2>Manage Products</h2>
+            <form id="product-form" class="form-card">
+              <input type="hidden" id="product-id" />
+              <label>
+                Name
+                <input type="text" id="product-name" required />
+              </label>
+              <label>
+                Description
+                <textarea id="product-description" required></textarea>
+              </label>
+              <label>
+                Price (KHR)
+                <input type="number" id="product-price" min="1" step="1" required />
+              </label>
+              <button type="submit" class="primary-btn">Save Product</button>
+              <button type="button" id="product-form-reset" class="secondary-btn">Reset</button>
+            </form>
+            <div id="admin-products-list" class="cards-grid"></div>
+          </section>
+
+          <section id="users-admin-view" class="admin-view">
+            <h2>Users</h2>
+            <div id="admin-users-list" class="table-container"></div>
+          </section>
+
+          <section id="transactions-admin-view" class="admin-view">
+            <h2>Transactions</h2>
+            <div id="admin-transactions-list" class="table-container"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/admin.js"></script>
+  </body>
+</html>
+
